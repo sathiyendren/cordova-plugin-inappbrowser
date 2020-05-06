@@ -543,7 +543,7 @@ public class InAppBrowser extends CordovaPlugin {
                             dialog.dismiss();
                             dialog = null;
                         }
-                        if( inAppWebView) {
+                        if( inAppWebView!=null) {
                             inAppWebView.onPause();
 							inAppWebView.removeAllViews();
 							inAppWebView.destroyDrawingCache();
@@ -555,10 +555,10 @@ public class InAppBrowser extends CordovaPlugin {
                 // NB: From SDK 19: "If you call methods on WebView from any thread
                 // other than your app's UI thread, it can cause unexpected results."
                 // http://developer.android.com/guide/webapps/migrating.html#Threads
-                if(childView) {
+                if(childView!=null) {
                     childView.loadUrl("about:blank");
                 }
-                if( inAppWebView) {
+                if( inAppWebView!=null) {
                     inAppWebView.onPause();
                     inAppWebView.removeAllViews();
                     inAppWebView.destroyDrawingCache();
