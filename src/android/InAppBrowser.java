@@ -558,13 +558,7 @@ public class InAppBrowser extends CordovaPlugin {
                 if(childView!=null) {
                     childView.loadUrl("about:blank");
                 }
-                if( inAppWebView!=null) {
-                    inAppWebView.onPause();
-                    inAppWebView.removeAllViews();
-                    inAppWebView.destroyDrawingCache();
-                    inAppWebView.destroy();
-                    inAppWebView = null;
-                }
+
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", EXIT_EVENT);
