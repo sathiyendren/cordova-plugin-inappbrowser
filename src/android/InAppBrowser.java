@@ -543,13 +543,28 @@ public class InAppBrowser extends CordovaPlugin {
                             dialog.dismiss();
                             dialog = null;
                         }
+                        if( inAppWebView) {
+                            inAppWebView.onPause();
+							inAppWebView.removeAllViews();
+							inAppWebView.destroyDrawingCache();
+							inAppWebView.destroy();
+							inAppWebView = null;
+                        }
                     }
                 });
                 // NB: From SDK 19: "If you call methods on WebView from any thread
                 // other than your app's UI thread, it can cause unexpected results."
                 // http://developer.android.com/guide/webapps/migrating.html#Threads
-                childView.loadUrl("about:blank");
-
+                if(childView) {
+                    childView.loadUrl("about:blank");
+                }
+                if( inAppWebView) {
+                    inAppWebView.onPause();
+                    inAppWebView.removeAllViews();
+                    inAppWebView.destroyDrawingCache();
+                    inAppWebView.destroy();
+                    inAppWebView = null;
+                }
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", EXIT_EVENT);
